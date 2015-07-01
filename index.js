@@ -1,4 +1,4 @@
-require('env');
+require('dotenv');
 
 var stamper = require('./lib/stamper');
 var express = require('express');
