@@ -1,4 +1,4 @@
-var StreamPng = require('streamPng')
+var StreamPng = require('streampng')
 var stamper = require('../lib/stamper');
 var expect = require('chai').expect;
 var data = require('./fixtures/pics');
