@@ -1,12 +1,13 @@
 require('dotenv').load();
-
+var _ = require('underscore');
 console.log(process.env.PORT);
 
 var stamper = require('./lib/stamper');
 var express = require('express');
 var app = express();
 
-app.use(require('body-parser').json());
+app.use(require('body-parser').json({ type: 'application/json' }));
+app.use(require('body-parser').raw({ type: 'image/png' }));
 
 app.get('/', function (req, res) {
   res.send('PNG Stamper Service OK!');
@@ -25,6 +26,20 @@ app.post('/read', function(req, res) {
         res.send(chunks);
     });
 });
+
+app.post('/contains/:key/:value', function(req, res) {
+    stamper.read(req.body, function(err, chunks) {
+        var chunk = {};
+            chunk[req.params.key] = req.params.value;
+        var contains = _.findWhere(chunks, chunk);
+
+        if (!contains) {
+            return res.send({error: "key not matched"});
+        }
+
+        res.send(contains);
+    });
+})
 
 var server = app.listen(process.env.PORT, function () {
 
