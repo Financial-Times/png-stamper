@@ -13,12 +13,18 @@ app.get('/', function (req, res) {
 });
 
 app.post('/stamp', function(req, res) {
-    res.pipe(stamper.stamp(req.body));
+    stamper.stamp(req.body, function(err, buffer) {
+        res.header("Content-Type", "image/png");
+        res.send(buffer);
+    });
 });
 
 app.post('/read', function(req, res) {
-    /*res.send(stamper.read(req.))*/
-})
+    stamper.read(req.body, function(err, chunks) {
+        res.header("Content-Type", "application/json");
+        res.send(chunks);
+    });
+});
 
 var server = app.listen(process.env.PORT, function () {
 
