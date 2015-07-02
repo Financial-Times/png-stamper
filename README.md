@@ -7,7 +7,7 @@ send a POST request like this:
 ```json
 POST /stamp
 {
-    "file": <base64 encoded png>,
+    "file": "<base64 encoded png>",
     "stamp": {
         "Software" : "Nightingale",
         "Author" : "Kanye West"
