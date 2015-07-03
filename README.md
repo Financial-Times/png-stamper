@@ -45,3 +45,9 @@ Content-Type: "image/png"
 ```
 
 for a list of standard PNG tEXt key/value pairs, go to [the official w3c spec for PNG](http://www.w3.org/TR/PNG/#11keywords)
+
+# Deployment to Heroku
+1. Create an `.env` file with `PORT=$YOURPORTNUMBER`
+2. Run locally with foreman start.
+3. You can also provide the port as an environment variable, i.e. PORT=80
+4. Push to heroku.
