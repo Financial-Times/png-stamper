@@ -1,4 +1,3 @@
-require('dotenv').load();
 var _ = require('underscore');
 var cors = require('cors');
 
@@ -44,7 +43,7 @@ app.post('/contains/:key/:value', function(req, res) {
     });
 })
 
-var server = app.listen(process.env.PORT, function () {
+var server = app.listen(process.env.PORT || 3000, function () {
 
   var host = server.address().address;
   var port = server.address().port;
