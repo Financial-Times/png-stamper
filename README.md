@@ -11,6 +11,7 @@ POST /stamp
 Content-Type: "application/json"
 {
     "file": "<base64 encoded png>",
+    "filename": "my_file_name.png",
     "stamp": {
         "Software" : "Nightingale",
         "Author" : "Kanye West"
