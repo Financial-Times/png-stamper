@@ -6,8 +6,14 @@ var express = require('express');
 var app = express();
 
 app.use(cors());
-app.use(require('body-parser').json({ type: 'application/json' }));
-app.use(require('body-parser').raw({ type: 'image/png' }));
+app.use(require('body-parser').json({
+  type: 'application/json',
+  limit: '5mb'
+}));
+app.use(require('body-parser').raw({
+  type: 'image/png',
+  limit: '5mb'
+}));
 
 app.get('/', function (req, res) {
   res.send('PNG Stamper Service OK!');
