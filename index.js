@@ -1,13 +1,16 @@
+require('dotenv').load();
 var _ = require('underscore');
-var cors = require('cors');
+console.log(process.env.PORT);
 
 var stamper = require('./lib/stamper');
 var express = require('express');
 var app = express();
 
-app.use(cors());
 app.use(require('body-parser').json({ type: 'application/json' }));
-app.use(require('body-parser').raw({ type: 'image/png' }));
+app.use(require('body-parser').raw({
+  type: 'image/png',
+  limit: '5mb'
+  }));
 
 app.get('/', function (req, res) {
   res.send('PNG Stamper Service OK!');
@@ -15,16 +18,14 @@ app.get('/', function (req, res) {
 
 app.post('/stamp', function(req, res) {
     stamper.stamp(req.body, function(err, buffer) {
-        res.header('Content-Type', 'image/png');
-        var filename = req.body.filename || 'stamped-image.png';
-        res.header('Content-Disposition', 'attachment; filename=' + filename);
+        res.header("Content-Type", "image/png");
         res.send(buffer);
     });
 });
 
 app.post('/read', function(req, res) {
     stamper.read(req.body, function(err, chunks) {
-        res.header('Content-Type', 'application/json');
+        res.header("Content-Type", "application/json");
         res.send(chunks);
     });
 });
@@ -36,14 +37,19 @@ app.post('/contains/:key/:value', function(req, res) {
         var contains = _.findWhere(chunks, chunk);
 
         if (!contains) {
-            return res.send({error: 'key not matched'});
+            return res.send({error: "key not matched"});
         }
 
         res.send(contains);
     });
-})
+});
 
-var server = app.listen(process.env.PORT || 3000, function () {
+app.get('/stamp', function(req, res) {
+    // generate some sort of website to apply the stamp
+    // manually
+    });
+
+var server = app.listen(process.env.PORT, function () {
 
   var host = server.address().address;
   var port = server.address().port;
