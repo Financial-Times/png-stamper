@@ -15,11 +15,16 @@
     "cors": "^2.7.1",
     "express": "^4.13.0",
     "streampng": "^0.1.8",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "moment": "^2.13.0",
+    "request": "^2.27.0",
+    "fs": "^0.0.2",
+    "tough-cookie-filestore": "^0.0.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "nock": "^8.0.0"
   },
   "engines": {
     "node": ">=0.10.3 <0.11"

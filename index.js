@@ -2,6 +2,7 @@ var _ = require('underscore');
 var cors = require('cors');
 
 var stamper = require('./lib/stamper');
+var uploader = require('./lib/exporter');
 var express = require('express');
 var app = express();
 
@@ -47,7 +48,19 @@ app.post('/contains/:key/:value', function(req, res) {
 
         res.send(contains);
     });
-})
+});
+
+app.post('/export/methode', function(req, res) {
+    stamper.stamp(req.body, function(err, buffer) {
+        var filename = req.body.filename || 'stamped-image.png';
+        uploader.uploadToMethode(buffer, filename, function(response){
+            res.send(response);
+        });
+
+    });
+
+
+});
 
 var server = app.listen(process.env.PORT || 3000, function () {
 

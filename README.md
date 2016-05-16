@@ -33,7 +33,21 @@ Content-Type: "image/png"
 <png binary>
 ```
 
+## Stamping and exporting images to cms
+send a POST request like this:
 
+```json
+POST /export/methode
+Content-Type: "application/json"
+{
+    "file": "<base64 encoded png>",
+    "filename": "my_file_name.png",
+    "stamp": {
+        "Software" : "Nightingale",
+        "Author" : "Kanye West"
+    }
+}
+```
 
 ## Checking if a PNG contains a key/value
 POST a png image to `/contains/:key/:value` and you will get back the object (i.e. the key-value pair) or an error
