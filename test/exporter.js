@@ -4,7 +4,7 @@ var chai = require('chai');
 var data = require('./fixtures/pics');
 var nock = require("nock");
 
-process.env.ROOTPATH = 'http://localhost';
+process.env.METHODE_API_ROOTPATH = 'http://localhost';
 var uploader = require('../lib/exporter');
 
 
@@ -16,7 +16,7 @@ describe("uploader", function() {
     });
 
     var expectations = [
-        {statusCode: 200, status: "success", expected: "Upload successful" },
+        {statusCode: 200, status: "success", expected: "File successfully uploaded" },
         {statusCode: 400, status: "failure", expected: "File upload failed"}
     ];
 
