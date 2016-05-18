@@ -1,7 +1,7 @@
 ![A stamp with the face of the queen on it](http://i.imgur.com/6CmgCQM.png)
 # PNG Stamper
 
-Stamp your png's with metadata using `tEXt` chunks. only works with node.js v0.10, as there is currently an error with Buffers in v0.11+.
+Stamp your png's with metadata using `tEXt` chunks.
 
 ## Stamping images
 send a POST request like this:
@@ -39,7 +39,7 @@ Content-Type: "image/png"
 POST a png image to `/contains/:key/:value` and you will get back the object (i.e. the key-value pair) or an error
 
 ```
-POST /conatins/Software/Nightingale
+POST /contains/Software/Nightingale
 Content-Type: "image/png"
 <png binary>
 ```
