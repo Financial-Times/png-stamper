@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var cors = require('cors');
+var authS3O = require('s3o-middleware');
 
 var stamper = require('./lib/stamper');
 var express = require('express');
@@ -14,6 +15,8 @@ app.use(require('body-parser').raw({
   type: 'image/png',
   limit: '5mb'
 }));
+
+app.use(authS3O)
 
 app.get('/', function (req, res) {
   res.send('PNG Stamper Service OK!');
