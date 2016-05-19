@@ -16,7 +16,7 @@ app.use(require('body-parser').raw({
   limit: '5mb'
 }));
 
-app.use(authS3O)
+//app.use(authS3O)
 
 app.get('/', function (req, res) {
   res.send('PNG Stamper Service OK!');
