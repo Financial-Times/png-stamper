@@ -9,5 +9,3 @@ deployment:
       appname: png-stamper-staging
   production:
     branch: master
-    heroku:
-      appname: png-stamper
