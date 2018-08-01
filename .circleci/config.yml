@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    environment:
+      TZ: "/usr/share/zoneinfo/Europe/London"
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - checkout
+      # Run tests
+      - run:
+          name: Run Tests
+          command: touch .env
